@@ -1,0 +1,98 @@
+import java.nio.file.Paths
+
+group 'com.incarcloud'
+version '1.0'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    if (project.hasProperty("maven")) {
+        if (maven.equals("maven.aliyun.com"))
+            maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+        else
+            mavenCentral()
+    } else {
+        mavenCentral()
+    }
+}
+
+dependencies {
+    compile("org.springframework:spring-context:4.3.+")
+    compile("org.slf4j:slf4j-api:1.7.+")
+    
+    testCompile("junit:junit:4.+")
+    testRuntime("org.apache.logging.log4j:log4j-slf4j-impl:2.8.+")
+    testRuntime("org.apache.logging.log4j:log4j-core:2.8.+")
+}
+
+task genJava{
+    int max = 5
+    def tpls = ["Action", "Func", "RunnableAction", "CallableFunc"]
+    def base = Paths.get(projectDir.getPath(), "src/main/java/com/incarcloud/lang")
+
+    // 注册输入输出
+    tpls.forEach{ tpl ->
+        inputs.file(new File(base.toString(), String.format("%s.jav_", tpl)))
+        for(int i=1;i<=max;i++){
+            outputs.file(new File(base.toString(), String.format("%s%s.java", tpl, i==1?"":i.toString())))
+        }
+    }
+
+    doLast{
+        // 扩展模板参量个数
+        def expand = { int n, String seg, String split->
+            if(n == 1) return seg.replaceAll("%d", "")
+            StringBuilder sbBuf = new StringBuilder()
+            for(int i=1;i<=n;i++){
+                if(i>1) sbBuf.append(split)
+                sbBuf.append(String.format(seg, i, i))
+            }
+            return sbBuf.toString()
+        }
+
+        // 按模板生成JAVA代码
+        def genJav_ = { String tpl, int n ->
+            def javaFile = new File(base.toString(), String.format("%s.jav_", tpl)).text
+            javaFile = javaFile
+                .replace("\$args_num\$", n==1?"":n.toString())
+                .replace("\$types\$", expand(n, "T%d", " ,"))
+                .replace("\$type_args\$", expand(n, "T%d arg%d", " ,"))
+                .replace("\$type_arg_declare\$", expand(n, "protected T%d _arg%d;\n", "    "))
+                .replace("\$arg_assign\$", expand(n, "_arg%d = arg%d;\n", "        "))
+                .replace("\$arg_var\$", expand(n, "_arg%d", " ,"))
+
+            String target = String.format("%s.java", tpl)
+            if(n>1) target = String.format("%s%d.java", tpl, n)
+            def writer = new PrintWriter(new File(base.toString(), target))
+            writer.print(javaFile)
+            writer.close()
+        }
+
+        for(int i=1;i<=max;i++){
+            tpls.forEach{ tpl -> genJav_(tpl,i) }
+        }
+    }
+}
+
+compileJava{
+    dependsOn genJava
+    options.encoding = "utf-8"
+    options.compilerArgs << "-Xlint:unchecked"
+}
+
+compileTestJava{
+    options.encoding = "utf-8"
+    options.compilerArgs << "-Xlint:unchecked"
+}
+
+test{
+    testLogging {
+        events "passed", "skipped", "failed"
+        showStandardStreams = true
+    }
+}
+
+defaultTasks "assemble"

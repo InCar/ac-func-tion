@@ -1,0 +1,5 @@
+package com.incarcloud.lang;
+
+interface Func$args_num$<R, $types$>{
+    R call($type_args$);
+}

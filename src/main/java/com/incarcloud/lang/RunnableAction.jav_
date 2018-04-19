@@ -1,0 +1,16 @@
+package com.incarcloud.lang;
+
+public class RunnableAction$args_num$<$types$> implements Runnable{
+    $type_arg_declare$
+    protected final Action$args_num$<$types$> _action;
+
+    public RunnableAction$args_num$(Action$args_num$<$types$> action, $type_args$){
+        $arg_assign$
+        _action = action;
+    }
+
+    @Override
+    public void run(){
+        _action.run($arg_var$);
+    }
+}
