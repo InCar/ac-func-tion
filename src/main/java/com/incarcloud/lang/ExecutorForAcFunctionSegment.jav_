@@ -1,0 +1,8 @@
+    public <$types$> Future<?> submit(Action$args_num$<$types$> action, $type_args$){
+        return _execSrv.submit(new RunnableAction$args_num$<>(action, $arg_var2$));
+    }
+
+    public <R, $types$> Future<R> submit(Func$args_num$<R, $types$> func, $type_args$){
+        return _execSrv.submit(new CallableFunc$args_num$<>(func, $arg_var2$));
+    }
+

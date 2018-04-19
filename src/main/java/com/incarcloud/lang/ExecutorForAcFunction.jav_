@@ -1,0 +1,23 @@
+package com.incarcloud.lang;
+
+import java.util.concurrent.*;
+
+public class ExecutorForAcFunction {
+    private final ExecutorService _execSrv;
+
+    public ExecutorForAcFunction(ExecutorService execSrv){
+        this._execSrv = execSrv;
+    }
+
+    public ExecutorService getExecSrv(){ return this._execSrv; }
+
+    public Future<?> submit(Runnable action){
+        return _execSrv.submit(action);
+    }
+
+    public <R> Future<R> submit(Callable<R> func){
+        return _execSrv.submit(func);
+    }
+
+$place_holder$
+}

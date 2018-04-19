@@ -1,0 +1,16 @@
+    public <$types$> ScheduledFuture<?> schedule(Action$args_num$<$types$> action, long delay, TimeUnit unit, $type_args$){
+        return _scheduler.schedule(new RunnableAction$args_num$<>(action, $arg_var2$), delay, unit);
+    }
+
+    public <R, $types$> ScheduledFuture<R> schedule(Func$args_num$<R, $types$> func, long delay, TimeUnit unit, $type_args$){
+        return _scheduler.schedule(new CallableFunc$args_num$<>(func, $arg_var2$), delay ,unit);
+    }
+
+    public <$types$> ScheduledFuture<?> scheduleAtFixedRate(Action$args_num$<$types$> action, long initialDelay, long period, TimeUnit unit, $type_args$){
+        return _scheduler.scheduleAtFixedRate(new RunnableAction$args_num$<>(action, $arg_var2$), initialDelay, period, unit);
+    }
+
+    public <$types$> ScheduledFuture<?> scheduleWithFixedDelay(Action$args_num$<$types$> action, long initialDelay, long delay, TimeUnit unit, $type_args$){
+        return _scheduler.scheduleWithFixedDelay(new RunnableAction$args_num$<>(action, $arg_var2$), initialDelay, delay, unit);
+    }
+
