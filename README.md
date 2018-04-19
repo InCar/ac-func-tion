@@ -52,6 +52,8 @@ scheduler.schedule(action, 1000, TimeUnit.MILLISECONDS, 15, 17);
 
 ```
 
+more samples in [src/test/java/com/incarcloud/lang/Basic.java](https://github.com/InCar/ac-func-tion/blob/master/src/test/java/com/incarcloud/lang/Basic.java)
+
 ## prerequisite
 - [JDK 1.8+](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
 - [Gradle 4.5+](http://gradle.org/gradle-download/)
