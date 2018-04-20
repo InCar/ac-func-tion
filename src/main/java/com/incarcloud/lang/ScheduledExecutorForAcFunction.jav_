@@ -2,6 +2,9 @@ package com.incarcloud.lang;
 
 import java.util.concurrent.*;
 
+/**
+ * Extending ScheduledExecutorService for accepting Action and Func as argument
+ */
 public class ScheduledExecutorForAcFunction {
     private final ScheduledExecutorService _scheduler;
 

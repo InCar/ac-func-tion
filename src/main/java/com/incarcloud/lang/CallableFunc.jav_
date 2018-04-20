@@ -2,6 +2,10 @@ package com.incarcloud.lang;
 
 import java.util.concurrent.Callable;
 
+/**
+ * CallableFunc wraps Func into Callable
+ * So you can use Func in any methods accepting Callable
+ */
 public class CallableFunc$args_num$<R, $types$> implements Callable<R>{
     $type_arg_declare$
     protected final Func$args_num$<R, $types$> _func;

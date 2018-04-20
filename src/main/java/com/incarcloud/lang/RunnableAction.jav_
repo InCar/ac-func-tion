@@ -1,5 +1,9 @@
 package com.incarcloud.lang;
 
+/**
+ * RunnableAction wraps Action into Runnable
+ * So you can use Action in any methods accepting Runnable
+ */
 public class RunnableAction$args_num$<$types$> implements Runnable{
     $type_arg_declare$
     protected final Action$args_num$<$types$> _action;

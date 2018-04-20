@@ -1,5 +1,10 @@
 package com.incarcloud.lang;
 
+/**
+ * Like interface Runnable but has input argument(s)
+ * There're total 5 interfaces from 1 argument to 5 arguments
+ * Action<T> Action2<T1,T2> ... Action5<T1,T2,T3,T4,T5>
+ */
 interface Action$args_num$<$types$>{
     void run($type_args$);
 }
