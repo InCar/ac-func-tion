@@ -7,6 +7,15 @@ But both have none input argument
 
 I created this project for interfaces like Runnable and Callable, but support accept input arguments.
 
+[maven](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.incarcloud%22%20AND%20a%3A%22ac-func-tion%22)
+```xml
+<dependency>
+    <groupId>com.incarcloud</groupId>
+    <artifactId>ac-func-tion</artifactId>
+    <version>1.1.0</version>
+</dependency>
+```
+
 
 ```java
 Action<String> actionShow = (String txt)->{
