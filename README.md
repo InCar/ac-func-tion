@@ -63,6 +63,18 @@ scheduler.schedule(action, 1000, TimeUnit.MILLISECONDS, 15, 17);
 
 ```
 
+Also defined 10 wrapper classes for compatible with Runnable and Callable
+```java
+    Action<String> actHello = (x)->{ System.out.println(x); }
+    RunnableAction<String> wrap = new RunnableAction<>(actHello, "Hello");
+    wrap.run();
+
+    Func2<Integer, Integer, Integer> fnAdd = (x,y)->{ return x+y; }
+    CallableFunc2<Integer, Integer, Integer> wrap2 = new CallableFunc2<>(fnAdd, 5, 6);
+    Assert.isTrue(13, wrap2.call());
+
+```
+
 more samples in [src/test/java/com/incarcloud/lang/Basic.java](https://github.com/InCar/ac-func-tion/blob/master/src/test/java/com/incarcloud/lang/Basic.java)
 
 ## prerequisite
