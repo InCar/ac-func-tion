@@ -3,10 +3,10 @@ package com.incarcloud.lang;
 /**
  * Like interface Callable but has input argument(s)
  * There're total 5 interfaces from 1 argument to 5 arguments
- * Func<R,T> Func2<R,T1,T2> ... Func5<R,T1,T2,T3,T4,T5>
+ * Func&lt;R,T&gt; Func2&lt;R,T1,T2&gt; ... Func5&lt;R,T1,T2,T3,T4,T5&gt;
  * R is the type for return, and T T1 T2 ... T5 are types for input arguments
  * @param <R> the return type
  */
-interface Func$args_num$<R, $types$>{
+public interface Func$args_num$<R, $types$>{
     R call($type_args$);
 }
