@@ -139,10 +139,19 @@ artifacts {
 }
 
 signing{
+    if (!project.hasProperty("signing.keyId")){
+        println("Ignore signing")
+        return
+    }
     sign configurations.archives
 }
 
 uploadArchives {
+    if (!project.hasProperty("ossrhUsername")){
+        println("Ignore uploadArchives")
+        return
+    }
+
     repositories {
         mavenDeployer {
             beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
