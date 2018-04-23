@@ -18,6 +18,8 @@ I created this project for interfaces like Runnable and Callable, but support ac
 
 
 ```java
+import com.incarcloud.lang.*;
+
 Action<String> actionShow = (String txt)->{
     System.out.println(String.format("action is running with argument '%s'", txt));
 };
