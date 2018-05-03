@@ -12,21 +12,17 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 repositories {
-    if (project.hasProperty("maven")) {
-        if (maven.equals("maven.aliyun.com"))
-            maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
-        else
-            mavenCentral()
-    } else {
+    if (project.hasProperty("maven") && maven.equals("maven.aliyun.com"))
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+    else
         mavenCentral()
-    }
 }
 
 dependencies {
-    testCompile("org.slf4j:slf4j-api:1.7.25")
-    testCompile("junit:junit:4.12")
-    testRuntime("org.apache.logging.log4j:log4j-slf4j-impl:2.8.2")
-    testRuntime("org.apache.logging.log4j:log4j-core:2.8.2")
+    testImplementation("org.slf4j:slf4j-api:1.7.25")
+    testImplementation("junit:junit:4.12")
+    testRuntimeOnly("org.apache.logging.log4j:log4j-slf4j-impl:2.8.2")
+    testRuntimeOnly("org.apache.logging.log4j:log4j-core:2.8.2")
 }
 
 task genJava{
